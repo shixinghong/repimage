@@ -68,8 +68,4 @@ func main() {
 	if err := http.ListenAndServeTLS(":8080", cert, key, nil); err != nil {
 		klog.Exit(err)
 	}
-	//http.HandleFunc("/", servePods)
-	//if err := http.ListenAndServeTLS(":8080", nil); err != nil {
-	//	klog.Exit(err)
-	//}
 }
