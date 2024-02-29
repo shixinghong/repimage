@@ -20,11 +20,12 @@ clean:
 build:
 	GOOS=linux GOARCH=amd64 CGO_ENABLED=0  go build -ldflags '${LDFLAGS}' -o bin/$(BINARYNAME)
 docker-image :
-	docker build -t $(REGISTRY)/$(NAMESPACE)/$(BINARYNAME):$(TAG) .
-push:
+	docker build -t $(BINARYNAME):$(TAG) .
+docker-image-push:
 	docker build -t  $(REGISTRY)/$(NAMESPACE)/$(BINARYNAME):$(TAG) .
 	docker push $(REGISTRY)/$(NAMESPACE)/$(BINARYNAME):$(TAG)
 containerd-image:
 	nerdctl build -t $(BINARYNAME):$(TAG) .
+containerd-image-push:
 	nerdctl tag $(BINARYNAME):$(TAG) $(REGISTRY)/$(NAMESPACE)/$(BINARYNAME):$(TAG)
 	nerdctl push $(REGISTRY)/$(NAMESPACE)/$(BINARYNAME):$(TAG)
